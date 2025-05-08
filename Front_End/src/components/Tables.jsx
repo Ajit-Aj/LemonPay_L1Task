@@ -80,64 +80,31 @@ const TaskTable = ({
                             >
                                 <td className="p-4">{indexOfFirstTask + index + 1}</td>
                                 <td className="p-4">
-                                    {editingTaskId === task._id ? (
-                                        <div className="flex flex-col">
-                                            <label htmlFor="dueDate" className="font-medium mb-1">
-                                                Due Date <span className="text-red-500">*</span>
-                                            </label>
-                                            <input
-                                                id="dueDate"
-                                                type="datetime-local"
-                                                value={editedTask.dueDate}
-                                                min={getMinDateTime()}
-                                                onChange={(e) =>
-                                                    setEditedTask({
-                                                        ...editedTask,
-                                                        dueDate: e.target.value,
-                                                    })
-                                                }
-                                                className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 outline-none"
-                                                required
-                                            />
-                                        </div>
-                                    ) : (
-                                        formatDate(task.dueDate)
-                                    )}
+                                    {formatDate(task.dueDate)}
                                 </td>
 
-                                <td className="p-4 font-semibold">
-                                    {editingTaskId === task._id ? (
-                                        <input
-                                            type="text"
-                                            value={editedTask.taskName}
-                                            onChange={(e) =>
-                                                setEditedTask({
-                                                    ...editedTask,
-                                                    taskName: e.target.value,
-                                                })
-                                            }
-                                            className="p-2 border rounded-md"
-                                        />
-                                    ) : (
-                                        task.taskName
-                                    )}
+                                <td className="p-4 relative group max-w-xs">
+                                    <div className="truncate cursor-pointer">
+                                        {task.taskName.length > 15
+                                            ? `${task.taskName.slice(0, 15)}...`
+                                            : task.taskName}
+                                    </div>
+                                    <div className="absolute z-10 hidden group-hover:block bg-gray-800 text-white text-xs rounded-md px-3 py-2 top-full left-1/2 transform -translate-x-1/2 mt-1 whitespace-pre-wrap break-words max-w-xs shadow-lg">
+                                        {task.taskName}
+                                    </div>
                                 </td>
-                                <td className="p-4">
-                                    {editingTaskId === task._id ? (
-                                        <textarea
-                                            value={editedTask.description}
-                                            onChange={(e) =>
-                                                setEditedTask({
-                                                    ...editedTask,
-                                                    description: e.target.value,
-                                                })
-                                            }
-                                            className="p-2 border rounded-md w-full"
-                                        />
-                                    ) : (
-                                        task.description
-                                    )}
+
+                                <td className="p-4 relative group max-w-xs">
+                                    <div className="truncate cursor-pointer">
+                                        {task.description.length > 35
+                                            ? `${task.description.slice(0, 35)}...`
+                                            : task.description}
+                                    </div>
+                                    <div className="absolute z-10 hidden group-hover:block bg-gray-800 text-white text-xs rounded-md px-3 py-2 top-full left-1/2 transform -translate-x-1/2 mt-1 whitespace-pre-wrap break-words max-w-xs shadow-lg">
+                                        {task.description}
+                                    </div>
                                 </td>
+
                                 <td className="p-4">
                                     <div className="relative">
                                         <button className="hover: cursor-pointer" onClick={() => toggleMenu(task._id)}>

@@ -44,8 +44,8 @@ export default function App() {
       <div className="min-h-screen bg-gray-100">
         <AppRoutes />
         <ToastContainer
-          position="top-right"
-          autoClose={3000}
+          position="bottom-right"
+          autoClose={1800}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
