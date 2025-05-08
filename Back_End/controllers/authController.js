@@ -5,9 +5,7 @@ import User from "../models/User.js";
 import Token from "../models/Token.js";
 
 export const register = async (req, res) => {
-
     console.log(req.body, "#$%#$%");
-
     try {
         const { email, password } = req.body;
 
