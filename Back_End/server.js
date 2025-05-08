@@ -5,6 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import connectDB from "./config/db.js";
+import authRouter from "./routes/authroutes.js";
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,8 @@ connectDB();
 app.use(helmet());
 app.use(cors());
 app.use(morgan("dev"));
+const authroutes = authRouter;
+
 
 // Rate limiting
 const limiter = rateLimit({
@@ -27,6 +30,9 @@ app.use(express.json({ limit: "10kb" }));
 app.get("/", (req, res) => {
     res.status(200).send("Secure server is running!");
 });
+
+app.use("/api/users", authroutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server running securely on port ${PORT}`);
