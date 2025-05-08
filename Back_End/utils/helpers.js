@@ -31,8 +31,8 @@ const handleValidationErrors = (req, res, next) => {
 const Registervalidate = [
     body('email').isEmail().withMessage('Please provide a valid email'),
     body('password')
-        .isLength({ min: 6 })
-        .withMessage('Password must be at least 6 characters long'),
+        .isLength({ min: 8 })
+        .withMessage('Password must be at least 8 characters long'),
     handleValidationErrors,
 ];
 
