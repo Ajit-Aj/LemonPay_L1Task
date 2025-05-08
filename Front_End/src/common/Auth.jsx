@@ -60,13 +60,13 @@ const Auth = () => {
     };
 
     return (
-        <div className="relative flex flex-col md:flex-row min-h-screen bg-[linear-gradient(to_top_left,#4444A3_5%,white_90%)] overflow-hidden pt-16 sm:pt-8">
-            {/* Background Circles */}
-            <div className="absolute w-[250px] h-[250px] bg-[#FDBC31] rounded-full top-[-40px] right-[-140px] opacity-15 z-0 md:right-[-140px] md:top-[-1px] sm:right-[-20px] sm:top-[10px]"></div>
-            <div className="absolute w-[200px] h-[200px] bg-[#FDBC31] rounded-full bottom-[-90px] left-[-70px] opacity-15 z-0 sm:left-[-40px]"></div>
-            <div className="absolute w-[300px] h-[300px] bg-[#FDBC31] rounded-full bottom-[-150px] right-[40%] opacity-20 hidden md:block z-0"></div>
+        <div className="relative flex flex-col md:flex-row min-h-screen bg-[linear-gradient(to_top_left,#4444A3_30%,white_90%)] overflow-hidden pt-16 sm:pt-8">
+            {/*  Circles */}
+            <div className="absolute w-[250px] h-[250px] bg-[#f2e7e9] rounded-full top-[-40px] right-[-140px] opacity-15 z-0 md:right-[-140px] md:top-[-1px] sm:right-[-20px] sm:top-[10px]"></div>
+            <div className="absolute w-[200px] h-[200px] bg-[#5f4c6b] rounded-full bottom-[-90px] left-[-70px] opacity-15 z-0 sm:left-[-40px]"></div>
+            <div className="absolute w-[300px] h-[300px] bg-[#5f4c6b] rounded-full bottom-[-150px] right-[40%] opacity-20 hidden md:block z-0"></div>
 
-            {/* Left */}
+
             <div className="w-full md:w-1/2 p-8 flex flex-col items-center md:items-start text-center md:text-left z-10">
                 <img
                     src={logo}
@@ -82,7 +82,7 @@ const Auth = () => {
                 </div>
             </div>
 
-            {/* Right */}
+
             <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-10 z-10">
                 <div className="w-full max-w-[378px] bg-transparent">
                     <div className="mb-6">

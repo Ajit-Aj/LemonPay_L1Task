@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FaCheck } from "react-icons/fa";
 
 const AuthForm = ({
     type,
@@ -14,12 +15,12 @@ const AuthForm = ({
 }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     const focusShadow = "focus:shadow-md focus:shadow-yellow-400/90 focus:outline-none";
     const inputClasses =
         "w-full h-[46.3px] rounded-md bg-opacity-20 border border-[#E4E4E7] px-3 text-white placeholder-white";
 
-    // Get errors for specific fields
     const getFieldErrors = (fieldName) => {
         if (Array.isArray(error?.errors)) {
             return error.errors
@@ -49,6 +50,7 @@ const AuthForm = ({
                 <input
                     type="email"
                     name="email"
+                    required
                     value={email}
                     onChange={onChange}
                     className={`${inputClasses} ${focusShadow}`}
@@ -65,6 +67,7 @@ const AuthForm = ({
                 <input
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    required
                     value={password}
                     onChange={onChange}
                     className={`${inputClasses} ${focusShadow}`}
@@ -92,6 +95,7 @@ const AuthForm = ({
                         onChange={onChange}
                         className={`${inputClasses} ${focusShadow}`}
                         placeholder="Confirm password"
+                        required
                     />
                     <div
                         className="absolute right-3 top-[38px] cursor-pointer text-white"
@@ -108,11 +112,16 @@ const AuthForm = ({
 
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
-                    <input
-                        type="checkbox"
-                        className="h-4 w-4 bg-transparent appearance-none border border-white checked:bg-white checked:border-white"
-                    />
-                    <label className="text-sm text-white">Remember me</label>
+                    <div
+                        className={`h-4 w-4 border border-white flex items-center justify-center rounded-sm cursor-pointer transition duration-150 ${isChecked ? "bg-white" : "bg-transparent"
+                            }`}
+                        onClick={() => setIsChecked(!isChecked)}
+                    >
+                        {isChecked && <FaCheck className="text-black text-xs" />}
+                    </div>
+                    <label className="text-sm text-white cursor-pointer" onClick={() => setIsChecked(!isChecked)}>
+                        Remember me
+                    </label>
                 </div>
                 <button
                     type="button"
@@ -129,17 +138,6 @@ const AuthForm = ({
             >
                 {type === "signIn" ? "Sign In" : "Sign Up"}
             </button>
-
-            {/* General Form Errors */}
-            {getFormErrors().map((msg, idx) => (
-                <span key={idx} className="text-sm text-red-400 mt-2 text-center block">
-                    {msg}
-                </span>
-            ))}
-
-            {!Array.isArray(error?.errors) && typeof error === "string" && (
-                <span className="text-sm text-red-400 mt-2 text-center block">{error}</span>
-            )}
         </form>
     );
 };

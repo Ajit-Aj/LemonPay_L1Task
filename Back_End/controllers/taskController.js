@@ -57,7 +57,7 @@ export const getTasks = async (req, res) => {
         );
 
         if (!tasks.length) {
-            return res.status(200).json({ code: 404, message: "No data found" });
+            return res.status(200).json({ code: 404, message: "No tasks found. Please add some tasks." });
         }
 
         res.status(200).json({ code: 200, tasks });
@@ -117,14 +117,14 @@ export const updateTask = async (req, res) => {
 
 export const deleteTask = async (req, res) => {
     try {
+        console.log(req.body, "@ER%@$");
+
         const { taskId } = req.body;
 
         if (!taskId) {
             return res.status(400).json({ code: 400, message: "Task ID is required" });
         }
-
         const task = await Task.findById(taskId);
-
         if (!task) {
             return res.status(404).json({ code: 404, message: "Task not found" });
         }
