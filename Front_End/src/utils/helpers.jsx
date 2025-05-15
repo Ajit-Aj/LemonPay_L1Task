@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 export const formatDate = (dateString) => {
     const date = new Date(dateString);
-
     const options = {
         year: "numeric",
         month: "numeric",
@@ -15,7 +14,6 @@ export const formatDate = (dateString) => {
         timeZone: "UTC",
     };
     const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
-
     return formattedDate;
 };
 

@@ -14,7 +14,6 @@ const Home = () => {
     const navigate = useNavigate();
     const { showSuccess, showError } = useToast();
     const { tasks, loading, error } = useSelector((state) => state.tasks);
-
     const [isOpen, setIsOpen] = useState(false);
     const [menuOpenId, setMenuOpenId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +37,7 @@ const Home = () => {
     const totalPages = Math.ceil(validTasks.length / tasksPerPage);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("authtoken");
         setTimeout(() => {
             navigate("/");
         }, 1000);

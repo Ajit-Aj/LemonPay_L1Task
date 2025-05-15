@@ -1,12 +1,9 @@
-
-
 import Task from "../models/Task.js";
 import { parseDueDate } from "../utils/helpers.js";
 
 export const createTask = async (req, res) => {
     try {
         const { taskName = "", description, dueDate } = req.body;
-
         const utcDueDate = parseDueDate(dueDate);
         if (!utcDueDate) {
             return res.status(400).json({
@@ -14,14 +11,11 @@ export const createTask = async (req, res) => {
                 message: "Invalid due date format",
             });
         }
-
         const trimmedName = taskName.trim();
-
         const existingTask = await Task.findOne({
             userId: req.user.userId,
             taskName: trimmedName,
         });
-
         if (existingTask) {
             return res.status(400).json({
                 code: 400,
@@ -52,14 +46,10 @@ export const createTask = async (req, res) => {
 
 export const getTasks = async (req, res) => {
     try {
-        const tasks = await Task.find({ userId: req.user.userId }).select(
-            "-__v -updatedAt -userId"
-        );
-
+        const tasks = await Task.find({ userId: req.user.userId }).select("-__v -updatedAt -userId");
         if (!tasks.length) {
             return res.status(200).json({ code: 404, message: "No tasks found. Please add some tasks." });
         }
-
         res.status(200).json({ code: 200, tasks });
     } catch (err) {
         res.status(500).json({ code: 500, message: "Server error", error: err.message });
@@ -69,21 +59,16 @@ export const getTasks = async (req, res) => {
 export const updateTask = async (req, res) => {
     try {
         const { taskId, dueDate, taskName, description } = req.body;
-
         if (!taskId) {
             return res.status(400).json({ code: 400, message: "Task ID is required" });
         }
-
         const updates = {};
-
         if (taskName !== undefined) {
             updates.taskName = taskName.trim();
         }
-
         if (description !== undefined) {
             updates.description = description;
         }
-
         if (dueDate !== undefined) {
             const utcDueDate = parseDueDate(dueDate);
             if (!utcDueDate) {
@@ -91,7 +76,6 @@ export const updateTask = async (req, res) => {
             }
             updates.dueDate = utcDueDate;
         }
-
         const updatedTask = await Task.findOneAndUpdate(
             { _id: taskId, userId: req.user.userId },
             updates,
@@ -104,7 +88,6 @@ export const updateTask = async (req, res) => {
                 message: "Task not found or unauthorized",
             });
         }
-
         res.status(200).json({
             code: 200,
             message: "Task updated successfully",

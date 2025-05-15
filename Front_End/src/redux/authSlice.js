@@ -66,68 +66,6 @@ export const login =
         }
     };
 
-// export const register =
-//     (email, password, showSuccess, showError, onSuccess) => async (dispatch) => {
-//         dispatch(loginStart());
-//         try {
-//             const response = await axiosInstance.post("/api/users/register", {
-//                 email,
-//                 password,
-//             });
-
-//             const status = response.status;
-//             const message = response.data?.message || "Registration successful!";
-
-//             if (status === 201 || status === 200) {
-//                 dispatch(registerSuccess());
-//                 showSuccess(message);
-//                 if (onSuccess) onSuccess();
-//             } else {
-//                 showError("Unexpected response. Please try again.");
-//                 dispatch(loginFailure("Unexpected response."));
-//             }
-//         }
-//         catch (error) {
-//             // const status = error.response?.status;
-//             // const msg = error.response?.data?.meg || error.response?.data?.errors?.map(err => err.msg) || [];
-//             // showError(msg || "Hkhkfjds")
-//             // if (status === 400) {
-//             //     showError(msg || "User already exists.");
-//             // } else if (status === 500) {
-//             //     showError("Server error. Please try again later.");
-//             // } else {
-//             //     showError(msg);
-//             // }
-
-//             // dispatch(loginFailure(msg));
-
-//             const status = error.response?.status;
-//             const errors = error.response?.data?.errors;
-//             const fallbackMsg = error.response?.data?.message || "Something went wrong.";
-
-//             // Collect error messages
-//             let errorMessages = [];
-
-//             if (Array.isArray(errors)) {
-//                 errorMessages = errors.map((err) => err.msg);
-//             } else if (typeof fallbackMsg === "string") {
-//                 errorMessages = [fallbackMsg];
-//             }
-
-//             // Show a user-friendly message
-//             if (status === 400) {
-//                 showError(errorMessages.length ? errorMessages : "User already exists.");
-//             } else if (status === 500) {
-//                 showError("Server error. Please try again later.");
-//             } else {
-//                 showError(errorMessages.length ? errorMessages : "An unexpected error occurred.");
-//             }
-
-//             dispatch(loginFailure(errorMessages));
-//         }
-//     };
-
-
 export const register =
     (email, password, showSuccess, showError, onSuccess) => async (dispatch) => {
         dispatch(loginStart());

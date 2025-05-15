@@ -8,14 +8,12 @@ import NotFound from "./common/NotFound";
 import Home from "./pages/Home";
 import { ProtectedRoute } from "./utils/helpers";
 
-// Wrap routes inside a component where we can use hooks
 const AppRoutes = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("authtoken");
-
     if (!token && location.pathname !== "/") {
       navigate("/", { replace: true });
     }

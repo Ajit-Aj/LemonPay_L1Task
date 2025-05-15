@@ -5,7 +5,6 @@ import utc from 'dayjs/plugin/utc.js';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(utc);
-
 const parseDueDate = (dueDateString) => {
     try {
         const parsedDate = dayjs.utc(dueDateString, 'MM/DD/YYYY hh:mm A');
