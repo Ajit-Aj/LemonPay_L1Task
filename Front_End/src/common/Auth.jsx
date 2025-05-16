@@ -31,7 +31,6 @@ const Auth = () => {
                 showError("Passwords do not match!");
                 return;
             }
-
             dispatch(
                 register(
                     formData.email,
@@ -81,8 +80,6 @@ const Auth = () => {
                     </h1>
                 </div>
             </div>
-
-
             <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-10 z-10">
                 <div className="w-full max-w-[378px] bg-transparent">
                     <div className="mb-6">
@@ -93,7 +90,6 @@ const Auth = () => {
                             Your gateway to seamless transactions and easy payments.
                         </p>
                     </div>
-
                     <AuthForm
                         type={isSignUp ? "signUp" : "signIn"}
                         email={formData.email}

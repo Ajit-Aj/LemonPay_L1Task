@@ -54,7 +54,6 @@ export const login =
                 password,
             });
             const { token, user, message } = response.data;
-
             localStorage.setItem("authtoken", token);
             dispatch(loginSuccess({ token, user }));
             showSuccess(message);

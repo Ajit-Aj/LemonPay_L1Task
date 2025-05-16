@@ -25,10 +25,13 @@ const limiter = rateLimit({
     message: "Too many requests from this IP, please try again later."
 });
 app.use(limiter);
+
 app.use(express.json({ limit: "10kb" }));
+
 app.get("/", (req, res) => {
     res.status(200).send("Secure server is running!");
 });
+
 app.use("/api/users", authroutes);
 app.use("/api/tasks", taskRoutes);
 
